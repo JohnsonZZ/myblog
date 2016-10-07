@@ -60,6 +60,7 @@
 							</div>
 						</div>
 					</div>
+					<div class="box-body table-responsive">
 					<table id="simple-table" class="table table-striped table-bordered table-hover">
 						<form id="dataTable" method="post" action="" target="_blank">
 							<thead>
@@ -79,7 +80,7 @@
 									<td>{$val['brief']}</td>
 									<td>{$val['time']}</td>
 									<td>
-										<div class="hidden-sm hidden-xs action-buttons">
+										<div class="action-buttons">
 											<a class="blue" href="/admin/food/edit?id={$val['id']}">
 												<i class="ace-icon fa fa-pencil bigger-130" title="修改"></i>
 											</a>
@@ -93,6 +94,7 @@
 							</tbody>	
 						</form>
 					</table>
+					</div>
 					<ul class="pagination pull-right">
 					  {$food->render()}
 					</ul>
@@ -108,4 +110,17 @@ $("#excel").click(function(){
 })
 $('#allFood').addClass("active").siblings().removeClass("active");
 $('#listFood').addClass("active");
+$(".del").click(function(){
+	var val=$(this).attr('val');
+	layer.open({
+		icon:0,
+		title: '删除列表',
+		type: 0, 
+		content: '是否删除选中列表',
+		btn: ['确认', '取消'],
+		yes: function(){
+				location.href = val;
+			}
+	});	
+});
 </script>

@@ -10,7 +10,7 @@ class food extends Com
     public function index()
     {
 		$Food = new Articles();
-		$food = $Food->field('id,title,brief,time')->order('id desc')->paginate(10);
+		$food = $Food->field('id,title,brief,time')->order('id desc')->where('cid',1)->paginate(10);
 		$this->assign('food',$food);
 		return $this->fetch();
     }
@@ -48,9 +48,9 @@ class food extends Com
 		$Articles->save($data,['id'=>$data['id']]);
 		$this->redirect('index');
 	}
-	public function delete()
+	public function del($id)
 	{   
-		
+		$user = User::delete($id);
 	}
 	public function excel(){
 		Loader::import('PHPExcel.PHPExcel',EXTEND_PATH);

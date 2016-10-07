@@ -9,18 +9,21 @@ class health extends Com
 {
     public function index()
     {
-		$Food = new Articles();
-		$food = $Food->field('id,title,brief,time')->order('id desc')->paginate(10);
-		$this->assign('food',$food);
+		$Articles = new Articles();
+		$health = $Articles->field('id,title,brief,time')->order('id desc')->where('cid',2)->paginate(10);
+		$this->assign('health',$health);
 		return $this->fetch();
     }
 	public function add()
 	{   
 		return $this->fetch();
 	}
-	public function edit()
+	public function edit($id)
 	{ 
-		
+		$Articles = new Articles();
+		$article = $Articles->field('id,title,photo,brief,article')->find($id);
+		$this->assign('article',$article);
+		return $this->fetch();
 	}
 	public function create(Request $request)
 	{   
