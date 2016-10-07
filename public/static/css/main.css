@@ -1,0 +1,17 @@
+h1{font-family: '微软雅黑',"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+.white{color:#fff;}
+.mt100{margin-top:100px;}
+.mt300{margin-top:300px;}
+#ul-margin{margin:35px;}
+.product-name{text-decoration:underline;font-weight:bold;cursor:pointer}
+.product-name-div{position:absolute;}
+.product-name-img{position:absolute;
+		  top:-215px;left:70px;
+		  border:1px solid #dddddd;display:none;
+		  z-index:999;}
+.sales-name{text-decoration:underline;font-weight:bold;cursor:pointer}
+.sales-name-div{position:absolute;}
+.sales-name-img{position:absolute;
+		  top:-215px;left:50px;
+		  border:1px solid #dddddd;display:none;
+		  z-index:999;}

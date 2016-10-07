@@ -1,0 +1,130 @@
+{layout name="layout" /}
+	
+	<div class="main-content">
+		<div class="main-content-inner">
+			<!-- #section:basics/content.breadcrumbs -->
+			<div class="breadcrumbs" id="breadcrumbs">
+				<script type="text/javascript">
+					try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+				</script>
+
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="/">首页</a>
+					</li>
+					<li class="active">控制台</li>
+				</ul><!-- /.breadcrumb -->
+
+				<!-- #section:basics/content.searchbox -->
+				<div class="nav-search" id="nav-search">
+					<form class="form-search">
+						<span class="input-icon">
+							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+							<i class="ace-icon fa fa-search nav-search-icon"></i>
+						</span>
+					</form>
+				</div><!-- /.nav-search -->
+
+				<!-- /section:basics/content.searchbox -->
+			</div>
+			
+			<!-- /section:basics/content.breadcrumbs -->
+			<div class="page-content">
+				<!-- #section:settings.box -->
+				<!-- UY BEGIN -->
+
+
+				<!-- /section:settings.box -->
+				<div class="page-header">
+					<h1>
+						添加美食
+					</h1>
+				</div><!-- /.page-header -->
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+						<form class="form-horizontal" role="form" action="/admin/food/update" id="food-form" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="id" value="{$article.id}">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="title"> 菜名 </label>
+								<div class="col-sm-9">
+									<input type="text" id="title" placeholder="菜名" name="title" class="col-xs-10 col-sm-5" value="{$article.title}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right " for="photo"> 旧简图 </label>
+								<div class="col-sm-9">				
+									<img src="/uploads/{$article.photo}"  style="border:1px solid #d5d5d5;" height="123" width="200" class="fr" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right " for="photo"> 简图 </label>
+								<div class="col-sm-9">
+									<input type="file" id="photo" name="photo" class="col-xs-10 col-sm-5">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="brief"> 简介 </label>
+								<div class="col-sm-9">
+									<input type="text" id="brief" placeholder="简介" name="brief" class="col-xs-10 col-sm-5" value="{$article.brief}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="article"> 文章 </label>
+								<div class="col-sm-9">
+									<textarea class="col-xs-10 col-sm-5" id="article" rows="10" name="article" type="text/plain">{$article.article}</textarea>
+								</div>
+							</div>
+							
+							<div class="space-4"></div>
+							<div class="clearfix form-actions">
+								<div class="col-md-offset-3 col-md-9">
+									<button class="btn btn-info" type="submit" id="addButton" >
+										<i class="ace-icon fa fa-check bigger-110"></i>
+										提交
+									</button>
+
+									&nbsp; &nbsp; &nbsp;
+									<button class="btn" type="reset">
+										<i class="ace-icon fa fa-undo bigger-110"></i>
+										重置
+									</button>
+								</div>
+							</div>
+
+
+						</form>
+					</div>
+				</div>
+			
+			</div><!-- /.page-content -->
+		</div>
+	</div><!-- /.main-content -->
+	<script>
+	$("#excel").click(function(){
+		$("#dataTable").attr("action","/index/index/excel");
+		$("#dataTable").submit();
+		
+	})
+	$('#allFood').addClass("active").siblings().removeClass("active");
+	$('#addFood').addClass("active");
+	</script>
+	<script src="/static/bootstrap/js/fileinput.min.js"></script>
+	<script src="/static/bootstrap/js/fileinput_locale_zh.js"></script>	
+	<script src="/static/plugins/ueditor/ueditor.config.js"></script>
+	<script src="/static/plugins/ueditor/ueditor.all.min.js"></script>
+	<script src="/static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>	
+	<script>
+	$('#photo').fileinput({
+		language: 'zh', //设置语言
+		allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀,
+		showUpload: false, //是否显示上传按钮
+		showCaption: false,//是否显示标题
+		browseClass: "btn btn-primary", //按钮样式 
+		maxFileSize: 2048,
+	});
+	
+	
+	var ue = UE.getEditor('article',{ initialFrameWidth: 800 ,initialFrameHeight: 500});
+	</script>

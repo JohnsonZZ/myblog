@@ -1,0 +1,109 @@
+{layout name="layout" /}
+ <div class="main-content">
+	<div class="main-content-inner">
+		<!-- #section:basics/content.breadcrumbs -->
+		<div class="breadcrumbs" id="breadcrumbs">
+			<script type="text/javascript">
+				try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+			</script>
+
+			<ul class="breadcrumb">
+				<li>
+					<i class="ace-icon fa fa-home home-icon"></i>
+					<a href="/">首页</a>
+				</li>
+				<li class="active">控制台</li>
+			</ul><!-- /.breadcrumb -->
+
+			<!-- #section:basics/content.searchbox -->
+			<div class="nav-search" id="nav-search">
+				<form class="form-search">
+					<span class="input-icon">
+						<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+						<i class="ace-icon fa fa-search nav-search-icon"></i>
+					</span>
+				</form>
+			</div><!-- /.nav-search -->
+
+			<!-- /section:basics/content.searchbox -->
+		</div>
+		
+		<!-- /section:basics/content.breadcrumbs -->
+		<div class="page-content">
+			<!-- #section:settings.box -->
+			<!-- UY BEGIN -->
+
+
+			<!-- /section:settings.box -->
+			<div class="page-header">
+				<h1>
+					用户日志
+				</h1>
+			</div><!-- /.page-header -->
+			<form action="/index/index/add" method="post" enctype="multipart/form-data">
+				邮箱：<input  type="text" id="mail" name="mail"/>
+				标题：<input  type="text" id="title" name="title"/>
+				内容<input  type="text" id="content" name="content"/>
+				{:token()}
+				<button class="btn btn-white btn-info btn-bold">
+						<i class="ace-icon fa fa-share bigger-120 "></i>
+							发送
+				</button>
+				
+			</form>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="clearfix">
+						<div class="pull-right tableTools-container">
+							<div class="dt-buttons btn-overlap btn-group">
+								<a id="excel" class="dt-button buttons-excel buttons-flash btn btn-white btn-primary btn-bold" title="Export to Excel">
+									<span>
+										<i class="fa fa-file-excel-o bigger-110 green"></i>
+										<span class="hidden">Export to Excel</span>
+									</span>
+								</a>
+								<a id="print" class="dt-button buttons-print btn btn-white btn-primary btn-bold" title="Print">
+									<span>
+										<i class="fa fa-print bigger-110 grey"></i>
+										<span class="hidden">Print</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<table id="simple-table" class="table table-striped table-bordered table-hover">
+						<form id="dataTable" method="post" action="" target="_blank">
+							<thead>
+								<tr>
+									<th class="col-xs-1">用户</th>
+									<th class="logcontent col-xs-3">日志</th>
+									<th class="col-xs-1">时间</th>
+								</tr>
+							</thead>
+
+							<tbody>
+							{volist name="log" id="val"}
+							<input type="hidden"  name="id[]" value="{$val['id']}">
+								<tr>
+									<td>{$val['user']}</td>
+									<td>{$val['log']}</td>
+									<td>{$val['time']}</td>
+								</tr>
+							{/volist}
+							</tbody>	
+						</form>
+					</table>
+					<ul class="pagination pull-right">
+					  {$log->render()}
+					</ul>
+				</div><!-- /.span -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->
+<script>
+$("#excel").click(function(){
+	$("#dataTable").attr("action","/admin/index/excel");
+	$("#dataTable").submit();
+})
+</script>

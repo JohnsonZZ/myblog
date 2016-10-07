@@ -1,0 +1,179 @@
+{layout name="layout" /}
+<script>
+	$("#message").addClass("current_page_item").siblings().removeClass("current_page_item");
+</script>
+<div class="pagewrapper clearfix">
+	<aside class="pagesidebar">
+		<ul class="pagesider-menu">
+			<li id="menu-item-3410" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item">
+				<a href="/message">留言</a></li>
+		</ul>
+	</aside>
+	<div class="pagecontent">
+		<header class="pageheader clearfix">
+			<h1 class="pull-left">
+				<a href="/message">留言</a></h1>
+			<div class="pull-right">
+				<!-- 百度分享 -->
+				<span class="action action-share bdsharebuttonbox" data-bd-bind="1473997499259">
+					<i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count"></span>)
+					<div class="action-popover">
+						<div class="popover top in">
+							<div class="arrow"></div>
+							<div class="popover-content">
+								<a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+								<a href="#" class="bds_qzone fa fa-star" data-cmd="qzone" title="分享到QQ空间"></a>
+								<a href="#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博"></a>
+								<a href="#" class="qq fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a>
+								<a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="分享到微信"></a>
+								<a href="#" class="bds_more fa fa-ellipsis-h" data-cmd="more"></a>
+							</div>  
+						</div>
+						<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"24"},"share":{"bdCustomStyle":"/static/css/share.css"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+					</div>
+				</span>
+			</div>
+		</header>
+		<div class="article-content"></div>
+		<div id="respond" class="no_webshot">
+			<form id="commentform">
+				<div class="comt-title">
+					<div class="comt-avatar pull-left">
+						<img alt="" src="/static/images/egg.jpg" class="avatar avatar-54 photo" height="54" width="54"></div>
+					<div class="comt-author pull-left">发表我的评论</div>
+					<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a></div>
+				<div class="comt">
+					<div class="comt-box">
+						<input type="hidden" name="pid" id="pid" value="0" />
+						<input type="hidden" name="fromuid" id="fromuid" value="1" />
+						<input type="hidden" name="touid" id="touid" value="0" />
+						<input type="hidden" name="commentid" id="commentid" value="0" />
+						{:token()}
+						<textarea placeholder="写点什么..." class="input-block-level comt-area" name="review" id="review" cols="100%" rows="3" tabindex="1"></textarea>
+						<div class="comt-ctrl">
+							<button class="btn btn-primary pull-right" type="button" id="comment" tabindex="5">
+								<i class="fa fa-check-square-o"></i>提交评论
+							</button>
+							<div class="comt-tips pull-right">
+									
+								<span data-type="comment-insert-smilie" class="muted comt-smilie">
+									<i class="fa fa-smile-o"></i>表情
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="postcomments">
+			<div id="comments">
+				<i class="fa fa-comments-o"></i>
+				<b>({$count})</b>个小伙伴在吐槽
+			</div>
+			<ol class="commentlist" id="commentlist">
+			{volist name='tree' id='val'}
+				<li class="comment" id="comment-{$val.id}">
+					<div class="c-avatar">
+						<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="{$val.asend}" style="display: block;">
+						<div class="c-main" id="div-comment-{$val.id}">{$val.message}
+							<div class="c-meta">
+								<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">{$val.send}</a></span>{$val.time|from_time}
+								<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('{$val.id}','{$val.id}','{$val.fromuid}')" aria-label="回复给{$val.send}">回复</a>
+							</div>
+						</div>
+						
+					</div> 
+					{notempty name="$val.child"}
+						<ul class="children">
+						{volist name='val.child' id='child'}
+						
+							<li class="comment" id="comment-{$child.id}">
+								<div class="c-avatar">
+									<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="{$child.asend}" style="display: block;">
+									<div class="c-main" id="div-comment-{$child.id}">
+									回复 <a href="#" rel="external nofollow" class="url" target="_blank">{$child.get}</a>： {$child.message}
+										<div class="c-meta"> 
+											<span class="c-author">
+												<a href="#" rel="external nofollow" class="url" target="_blank">{$child.send}</a></span>{$child.time|from_time}
+											<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('{$child.id}','{$val.id}','{$child.fromuid}')" aria-label="回复给sendtion">回复</a></div>
+									</div>
+									
+								</div>
+							</li>
+							<!-- #comment-## -->
+					
+						{/volist}
+						</ul>
+					{/notempty} 
+				</li>
+			{/volist}
+			</ol>
+		</div>
+</div>
+<script>
+	function addRespond(id,pid,fromuid){
+		$('#pid').val(pid);
+		$('#touid').val(fromuid);
+		$('#commentid').val('#comment-'+id);
+		$('#div-comment-'+id).append($("#respond"));
+		return true;
+	}
+	$('#cancel-comment-reply-link').click(function(){
+		$('#pid').val(0);
+		$('#touid').val(0);
+		$('#postcomments').before($("#respond"));
+	})
+	$('#comment').click(function(){
+		var pid = $('#pid').val();
+		var fromuid = $('#fromuid').val();
+		var touid = $('#touid').val();
+		var message = $('#review').val();
+		$.post(
+			'/index/message/comment',
+			{
+				'pid' : pid,
+				'fromuid' : fromuid,
+				'touid' : touid,
+				'message' : message,
+			},
+			function(data){
+				var html='';
+				if(pid==0){
+					html += '<li class="comment" id="comment-'+data['id']+'">'
+							+'<div class="c-avatar">'
+							+'<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="'+data['asend']+'" style="display: block;">'
+							+'<div class="c-main" id="div-comment-'+data['id']+'">'+data['message']
+							+'<div class="c-meta">'
+							+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+data['send']+'</a></span>'+data['time']
+							+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+data['id']+','+data['id']+','+data['fromuid']+')" aria-label="回复给'+data['send']+'">回复</a>'
+							+'</div></div></div></li>';
+					$('#pid').val(0);
+					$('#touid').val(0);
+					$('#review').val('');
+					$('#commentlist').prepend(html);
+				}else{
+					html += '<li class="comment" id="comment-'+data['id']+'">'
+							+'<div class="c-avatar">'
+							+'<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="'+data['asend']+'" style="display: block;">'
+							+'<div class="c-main" id="div-comment-'+data['id']+'">'
+							+'回复 <a href="#" rel="external nofollow" class="url" target="_blank">'+data['get']+'</a>：'+data['message']
+							+'<div class="c-meta">'
+							+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+data['send']+'</a></span>'+data['time']
+							+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+data['id']+','+data['pid']+','+data['fromuid']+')" aria-label="回复给'+data['send']+'">回复</a>'
+							+'</div></div></div></li>';
+					$('#pid').val(0);
+					$('#touid').val(0);
+					$('#review').val('');
+					$('#postcomments').before($("#respond"));
+					var commentid = $("#commentid").val();
+					if(data['child'] == true){
+						$(commentid).after(html);
+					}else{
+						$(commentid).append(html);
+						$('#comment-'+data['id']).wrap('<ul class="children">');
+					}
+				}
+			}
+		)
+	});
+</script>

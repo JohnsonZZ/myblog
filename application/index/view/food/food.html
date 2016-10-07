@@ -1,0 +1,380 @@
+{layout name="layout" /}
+<script>
+	$("#food").addClass("current_page_item").siblings().removeClass("current_page_item");
+</script>
+<div class="content-wrap">
+	<div class="content">
+		<header class="article-header">
+			<h1 class="article-title">
+				<a href="">{$article.title}</a>
+			</h1>
+			
+			<div class="meta">
+				<span id="mute-category" class="muted">
+					<i class="fa fa-list-alt"></i>
+					<a href="/food">美食烹饪</a>
+				</span>
+				<span class="muted">
+					<i class="fa fa-user"></i>up猪
+				</span>
+				<time class="muted">
+					<i class="fa fa-clock-o"></i>{$article.time|from_time}
+				</time>
+				<span class="muted" style="display:none;">
+					<i class="fa fa-eye"></i>1378
+				</span>
+				<span class="muted">
+					<i class="fa fa-comments-o"></i>
+					<a href="#comments">{$count}评论</a>
+				</span>
+			</div>
+		</header>
+		<article class="article-content">
+		{$article.article}
+		</article>
+		<footer class="article-footer">
+			<div class="article-tags">
+				<i class="fa fa-tags"></i>
+				<a href="/food" rel="tag" data-original-title="" title="">美食</a>
+		</footer>
+		<nav class="article-nav">
+			{notempty name="former"}
+			<span class="article-nav-prev">
+				<i class="fa fa-angle-double-left"></i>
+				<a href="/food/{$former.id}" rel="prev" title="{$former.title}">{$former.title}</a>
+			</span>
+			{/notempty}
+			{notempty name="latter"}
+			<span class="article-nav-next">
+				<a href="/food/{$latter.id}" rel="next" title="{$latter.title}">{$latter.title}</a>
+				<i class="fa fa-angle-double-right"></i>
+			</span>
+			{/notempty}
+		</nav>
+		<div class="related_top">
+			<div class="related_posts">
+				<ul class="related_img">
+				{volist name="articleList" id="val" length='4'}
+					<li class="related_box">
+						<a href="/food/{$val.id}" title="{$val.title}" target="_blank">
+							<img src="/uploads/{$val.photo}" alt="{$val.title}">
+							<br />
+							<span class="r_title">{$val.title}</span>
+						</a>
+					</li>
+				{/volist}
+				</ul>
+				<div class="relates">
+					<ul>
+						{volist name="articleList" id="val" length='4'}
+						<li>
+							<i class="fa fa-minus"></i>
+							<a href="/food/{$val.id}">{$val.title}</a>
+						</li>
+						{/volist}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="respond" class="no_webshot">
+			<form id="commentform">
+				<div class="comt-title">
+					<div class="comt-avatar pull-left">
+						<img alt="" src="/static/images/egg.jpg" class="avatar avatar-54 photo" height="54" width="54"></div>
+					<div class="comt-author pull-left">发表我的评论</div>
+					<a id="cancel-comment-reply-link" class="pull-right" href="javascript:;">取消评论</a></div>
+				<div class="comt">
+					<div class="comt-box">
+						<input type="hidden" name="aid" id="aid" value="{$article.id}" />
+						<input type="hidden" name="pid" id="pid" value="0" />
+						<input type="hidden" name="fromuid" id="fromuid" value="1" />
+						<input type="hidden" name="touid" id="touid" value="0" />
+						<input type="hidden" name="commentid" id="commentid" value="0" />
+						{:token()}
+						<textarea placeholder="写点什么..." class="input-block-level comt-area" name="review" id="review" cols="100%" rows="3" tabindex="1"></textarea>
+						<div class="comt-ctrl">
+							<button class="btn btn-primary pull-right" type="button" id="comment" tabindex="5">
+								<i class="fa fa-check-square-o"></i>提交评论
+							</button>
+							<div class="comt-tips pull-right">
+									
+								<span data-type="comment-insert-smilie" class="muted comt-smilie">
+									<i class="fa fa-smile-o"></i>表情
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="postcomments">
+			<div id="comments">
+				<i class="fa fa-comments-o"></i><b>({$count})</b>个小伙伴在吐槽
+			</div>
+			<ol class="commentlist" id="commentlist">
+			{volist name='tree' id='val'}
+				<li class="comment" id="comment-{$val.id}">
+					<div class="c-avatar">
+						<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="{$val.asend}" style="display: block;">
+						<div class="c-main" id="div-comment-{$val.id}">{$val.message}
+							<div class="c-meta">
+								<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">{$val.send}</a></span>{$val.time|from_time}
+								<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('{$val.id}','{$val.id}','{$val.fromuid}')" aria-label="回复给{$val.send}">回复</a>
+							</div>
+						</div>
+						
+					</div> 
+					{notempty name="$val.child"}
+						<ul class="children">
+						{volist name='val.child' id='child'}
+						
+							<li class="comment" id="comment-{$child.id}">
+								<div class="c-avatar">
+									<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="{$child.asend}" style="display: block;">
+									<div class="c-main" id="div-comment-{$child.id}">
+									回复 <a href="#" rel="external nofollow" class="url" target="_blank">{$child.get}</a>： {$child.message}
+										<div class="c-meta"> 
+											<span class="c-author">
+												<a href="#" rel="external nofollow" class="url" target="_blank">{$child.send}</a></span>{$child.time|from_time}
+											<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('{$child.id}','{$val.id}','{$child.fromuid}')" aria-label="回复给sendtion">回复</a></div>
+									</div>
+									
+								</div>
+							</li>
+							<!-- #comment-## -->
+					
+						{/volist}
+						</ul>
+					{/notempty} 
+				</li>
+			{/volist}
+			</ol>
+			{gt name="count" value="10"}
+			<div class="messages-count" id="messages-count">
+				后面还有<span id="span-messages-count">{$count-1}</span>条信息，<a href="javascript:get_review();">点击查看</a>
+			</div>
+			{/gt}
+		</div>
+	</div>
+</div>
+<aside class="sidebar">
+	<div class="widget widget_text">
+		<div class="textwidget">
+			<div class="social">
+				<a href="http://weibo.com/u/1886150783" rel="external nofollow" title="" target="_blank" data-original-title="新浪微博">
+					<i class="sinaweibo fa fa-weibo"></i>
+				</a>
+				<a href="http://weibo.com/u/1886150783" rel="external nofollow" title="" target="_blank" data-original-title="腾讯微博">
+					<i class="tencentweibo fa fa-tencent-weibo"></i>
+				</a>
+				<a class="weixin" data-original-title="" title="">
+					<i class="weixins fa fa-weixin"></i>
+					<div class="weixin-popover">
+						<div class="popover bottom in">
+							<div class="arrow">
+							</div>
+							<div class="popover-title">订阅号“臻臻工作室”</div>
+								<div class="popover-content">
+									<img src="/static/images/qrcode.jpg" />
+								</div>
+							</div>
+					</div>
+				</a>
+				<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=85aflpCHiZuWnbOCgt2QnJ4" rel="external nofollow" title="" target="_blank" data-original-title="Email">
+					<i class="email fa fa-envelope-o"></i>
+				</a>
+				<a href="http://wpa.qq.com/msgrd?v=3&uin=465629989&site=qq&menu=yes" rel="external nofollow" title="" target="_blank" data-original-title="联系QQ">
+					<i class="qq fa fa-qq"></i>
+				</a>
+				<a href="#" rel="external nofollow" target="_blank" title="" data-original-title="订阅本站">
+					<i class="rss fa fa-rss"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="widget d_subscribe">
+		<div class="title">
+			<h2>邮件订阅</h2>
+		</div>
+		<form action="http://list.qq.com/cgi-bin/qf_compose_send" target="_blank" method="post">
+			<p>填写您的邮件地址，订阅更多的精彩内容：</p>
+			{:token()}
+			<input type="email" name="to" class="rsstxt" placeholder="your@email.com" value="" required="">
+			<input type="submit" class="rssbutton" value="订阅">
+		</form>
+	</div>
+	<div class="widget d_postlist">
+		<div class="title">
+			<h2>猜你喜欢</h2>
+		</div>
+		<ul>
+			{volist name="newArticles" id="val"}
+			<li>
+				<a href="/food/{$val.id}" title="{$val.title}">
+					<span class="thumbnail">
+						<img src="/uploads/{$val.photo}" alt="{$val.title}"></span>
+					<span class="text">{$val.title}</span>
+					<span class="muted">{$val.time|from_time}</span>
+					<span class="muted" style="float: right;">9评论</span>
+				</a>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	<div class="widget d_comment">
+		<div class="title">
+			<h2>最新吐槽</h2>
+		</div>
+		<ul>
+			{volist name='newMessages' id='val'}
+			<li>
+				<a href="/message" title="{$val.message}">
+					<img alt="" src="{$val.asend}" class="avatar avatar-48 photo" height="48" width="48">
+					<div class="muted">
+						<i>{$val.send}</i>{$val.time|from_time}说：{$val.message}
+					</div>
+				</a>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	<div class="widget widget_links">
+		<div class="title">
+			<h2>友情链接</h2>
+		</div>
+		<ul class="xoxo blogroll">
+			<li>
+				<a href="http://www.thinkphp.cn/">ThinkPHP</a>
+			</li>
+			<li>
+				<a href="http://v3.bootcss.com/" target="_blank">Bootstrap</a>
+			</li>
+			<li>
+				<a href="http://www.youziku.com/" target="_blank">有字库</a>
+			</li>
+			<li>
+				<a href="http://layer.layui.com/" target="_blank">Layer</a>
+			</li>
+			<li>
+				<a href="http://www.yusi123.com/" target="_blank">欲思博客</a>
+			</li>
+		</ul>
+	</div>
+</aside>
+<script>
+	function addRespond(id,pid,fromuid){
+		$('#pid').val(pid);
+		$('#touid').val(fromuid);
+		$('#commentid').val('#comment-'+id);
+		$('#div-comment-'+id).append($("#respond"));
+		return true;
+	}
+	$('#cancel-comment-reply-link').click(function(){
+		$('#pid').val(0);
+		$('#touid').val(0);
+		$('#postcomments').before($("#respond"));
+	})
+    var page = 1;
+	var id = {$article.id};
+	function get_review(){
+		var count = $('#span-messages-count').text();
+		$.get(
+			'/index/food/getlist',
+			{
+				'id' : id,
+				'page' : page,
+			},
+			function(list){
+				var html='';
+				for(data in list){
+					html += '<li class="comment" id="comment-'+list[data]['id']+'">'
+							+'<div class="c-avatar">'
+							+'<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="'+list[data]['asend']+'" style="display: block;">'
+							+'<div class="c-main" id="div-comment-'+list[data]['id']+'">'+list[data]['message']
+							+'<div class="c-meta">'
+							+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+list[data]['send']+'</a></span>'+list[data]['time']
+							+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+list[data]['id']+','+list[data]['id']+','+list[data]['fromuid']+')" aria-label="回复给'+list[data]['send']+'">回复</a>'
+							+'</div></div></div>';
+					if(list[data]['child']){
+						html += '<ul class="children">';
+						for(x in list[data]['child']){
+							var child = list[data]['child'];
+							html += '<li class="comment" id="comment-'+child[x]['id']+'">'
+									+'<div class="c-avatar">'
+									+'<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="'+child[x]['asend']+'" style="display: block;">'
+									+'<div class="c-main" id="div-comment-'+child[x]['id']+'">'
+									+'回复 <a href="http://sendtion.cn" rel="external nofollow" class="url" target="_blank">'+child[x]['get']+'</a>：'+child[x]['message']
+									+'<div class="c-meta">'
+									+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+child[x]['send']+'</a></span>'+child[x]['time']
+									+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+child[x]['id']+','+child[x]['pid']+','+child[x]['fromuid']+')" aria-label="回复给'+child[x]['send']+'">回复</a>'
+									+'</div></div></div></li>';
+						}
+						html += '</ul>';	
+					}
+					html += '</li>';			
+				}
+				count -= page;
+				if(count<=0){
+					$('#messages-count').hide();
+				}else{
+					$('#span-messages-count').text(count);
+				}
+				page++;
+				$('#commentlist').append(html);
+			}
+		)
+	}
+	$('#comment').click(function(){
+		var aid = $('#aid').val();
+		var pid = $('#pid').val();
+		var fromuid = $('#fromuid').val();
+		var touid = $('#touid').val();
+		var message = $('#review').val();
+		$.post(
+			'/index/food/comment',
+			{
+				'aid' : aid,
+				'pid' : pid,
+				'fromuid' : fromuid,
+				'touid' : touid,
+				'message' : message,
+			},
+			function(data){
+				var html='';
+				if(pid==0){
+					html += '<li class="comment" id="comment-'+data['id']+'">'
+							+'<div class="c-avatar">'
+							+'<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="'+data['asend']+'" style="display: block;">'
+							+'<div class="c-main" id="div-comment-'+data['id']+'">'+data['message']
+							+'<div class="c-meta">'
+							+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+data['send']+'</a></span>'+data['time']
+							+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+data['id']+','+data['id']+','+data['fromuid']+')" aria-label="回复给'+data['send']+'">回复</a>'
+							+'</div></div></div></li>';
+					$('#commentlist').prepend(html);
+				}else{
+					html += '<li class="comment" id="comment-'+data['id']+'">'
+							+'<div class="c-avatar">'
+							+'<img alt="" class="avatar avatar-54 photo" height="54" width="54" src="'+data['asend']+'" style="display: block;">'
+							+'<div class="c-main" id="div-comment-'+data['id']+'">'
+							+'回复 <a href="#" rel="external nofollow" class="url" target="_blank">'+data['get']+'</a>：'+data['message']
+							+'<div class="c-meta">'
+							+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+data['send']+'</a></span>'+data['time']
+							+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+data['id']+','+data['pid']+','+data['fromuid']+')" aria-label="回复给'+data['send']+'">回复</a>'
+							+'</div></div></div></li>';
+					$('#pid').val(0);
+					$('#touid').val(0);
+					$('#review').val('');
+					$('#postcomments').before($("#respond"));
+					var commentid = $("#commentid").val();
+					if(data['child'] == true){
+						$(commentid).after(html);
+					}else{
+						$(commentid).append(html);
+						$('#comment-'+data['id']).wrap('<ul class="children">');
+					}
+				}
+			}
+		)
+	});
+</script>
+			

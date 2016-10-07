@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="keywords" content="舌尖,程序员,程序猿,工程师,美食,好吃,TP5开发,爱做饭的程序员" />
+		<meta name="description" content="爱做饭的程序员!" />
+		<title>舌尖上的程序猿</title>
+		<link href="/food.ico" type=image/x-icon rel="shortcut icon" />
+		<link href='//cdn.webfont.youziku.com/webfonts/nomal/91555/46489/57d8cd3ef629d80a14a4af21.css' rel='stylesheet' type='text/css' />
+		<link href='//cdn.webfont.youziku.com/webfonts/nomal/91555/19504/57d90915f629d8180437a717.css' rel='stylesheet' type='text/css' />
+		<!-- fontawesome -->
+		{load href="/static/bootstrap/css/font-awesome.css" /}
+		<!-- flexslider -->
+		{load href="/static/css/flexslider.css" /}
+		<!-- delicacy -->
+		{load href="/static/css/delicacy.css" /}
+		<!-- js -->
+		{load href="/static/js/jquery/jquery.js" /}
+		{load href="/static/bootstrap/js/bootstrap.js" /}
+		<!--[if lt IE 9]>
+		{load href="/static/js/html5/html5shiv.js" /}
+		{load href="/static/js/css3/selectivizr-min.js" /}
+		<![endif]-->
+		
+	</head>
+	<body class="home blog">
+		<header id="header" class="header">
+			<div class="container-inner">
+				<div class="yusi-logo">
+					<a href="/">
+						<h1>    
+							<span class="yusi-mono">舌尖上的程序猿</span>   
+							<span class="yusi-bloger">– 爱美食、爱健康、你开心就好！</span>     
+						</h1>
+					</a>
+				</div>
+			</div>
+
+				<div id="nav-header" class="navbar">
+					
+					<ul class="nav">
+						<li id="index" class="menu-item current_page_item"><a href="/">首页</a></li>
+						<li id="food" class="menu-item"><a href="/food">美食</a></li>
+						<li id="health" class="menu-item"><a href="/health">健康</a>
+						<li id="message" class="menu-item"><a href="/message">留言</a>
+						<li style="float:right;">
+							<div class="toggle-search" id="toggle-search">
+								<i class="fa fa-search"></i>
+							</div>
+						</li>
+						<div class="search-expand" id="search-expand">
+							<div class="search-expand-inner">
+								<form method="get" class="searchform themeform" onsubmit="location.href='http://yusi123.com/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="http://yusi123.com/">
+									<div> 
+										<input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='search...';" onfocus="if(this.value=='search...')this.value='';" value="search..." autofocus="autofocus"/>
+									</div>
+								</form>
+							</div>
+						</div>
+					</ul>
+				</div>
+				
+		</header>
+		<section class="container">
+			<div class="speedbar">
+				<div class="toptip">
+					<strong class="text-success">
+						<i class="fa fa-user"></i> 
+					</strong> 登录：
+					<div class="login">
+						<a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="新浪微博登录"></a>
+						<a href="#" class="qq fa fa-qq" data-cmd="sqq" title="QQ登录"></a>
+						<a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="微信登录"></a>
+					</div>
+				</div>
+			</div>
+			
+			
