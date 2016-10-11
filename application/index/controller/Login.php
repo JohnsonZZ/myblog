@@ -42,9 +42,10 @@ class Login extends Controller
 						$data['avatar'] = $result['avatar_url'];
 						$Users->data($data);
 						$Users->save();
+						$user['id']=$Users->id;
 					}
 					Cookie::init(['prefix'=>'d_','expire'=>604800]);
-					Cookie::set('id',$user->id);
+					Cookie::set('id',$user['id']);
 					Cookie::set('nick',$result['login']);
 					Cookie::set('avatar',$result['avatar_url']);
 					$this->redirect('/');
