@@ -20,13 +20,14 @@ class Login extends Controller
         $sns  = \ThinkOauth::getInstance($type);
 		$extend = null;
         $token = $sns->getAccessToken($code , $extend);
+		
+				dump($token);exit;
         //获取当前登录用户信息
         if(is_array($token)){
             if($type=='github')
             {
                 $github   = \ThinkOauth::getInstance('github', $token);
                 $data = $github->call('user');
-
                 if($data['ret'] == 0){
                     echo("<h1>恭喜！使用 {$type} 用户登录成功</h1><br>");
                     echo("授权信息为：<br>");
