@@ -2,7 +2,6 @@
 namespace app\index\controller;
 use think\Db;
 use think\Controller;
-use think\Loader;
 class Com extends Controller
 {
     public function _initialize(){
