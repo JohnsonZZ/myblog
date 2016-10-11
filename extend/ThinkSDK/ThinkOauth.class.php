@@ -206,7 +206,6 @@ abstract class ThinkOauth{
 	 */
 	protected function http($url, $params, $method = 'GET', $header = array(), $multi = false){
 		$opts = array(
-			CURLOPT_TIMEOUT        => 30,
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => false,
@@ -238,7 +237,6 @@ abstract class ThinkOauth{
 		if($error) exception('请求发生错误：' . $error);
 		return  $data;
 	}
-	
 	/**
 	 * 抽象方法，在SNSSDK中实现
 	 * 组装接口调用参数 并调用接口
