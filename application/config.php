@@ -228,4 +228,10 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+	//GIT登录
+	'THINK_SDK_GITHUB'               => [
+        'APP_KEY'      => '752cbef43fa415c39221',
+        'APP_SECRET'  => 'c16ac6ec79de098d154bf63c3482d6b18dcfb7c6',
+        'CALLBACK' => 'http://www.domybest.top/oauth/github',
+    ],
 ];

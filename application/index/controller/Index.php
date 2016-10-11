@@ -10,7 +10,9 @@ class index extends Com
 		$articles = new Articles();
 		$article = $articles
 					->alias('a')
-					->field('a.id,photo,brief,title,a.time,pcount,like')
+					->field('a.id,photo,brief,title,a.time,pcount,like,count(c.id) as review')
+					->join('comments c','a.id=c.aid','LEFT')
+					->group('a.id') 
 					->select();
 		$this->assign('articles',$article);
 		return $this->fetch();

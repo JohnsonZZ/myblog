@@ -65,7 +65,7 @@
 			<p class="auth-span">
 				<span class="muted"><i class="fa fa-clock-o"></i> {$val.time|from_time}</span>	
 				<span class="muted"><i class="fa fa-eye"></i> {$val.pcount}</span>	
-				<span class="muted"><i class="fa fa-comments-o"></i> <a href="#">9评论</a></span>
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="#">{$val.review}评论</a></span>
 			</p>
 		</article>
 		{/volist}
@@ -130,7 +130,7 @@
 						<img src="/uploads/{$val.photo}" alt="{$val.title}"></span>
 					<span class="text">{$val.title}</span>
 					<span class="muted">{$val.time|from_time}</span>
-					<span class="muted" style="float: right;">9评论</span>
+					<span class="muted" style="float: right;">{$val.review}评论</span>
 				</a>
 			</li>
 			{/volist}

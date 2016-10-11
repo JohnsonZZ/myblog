@@ -2,6 +2,7 @@
 namespace app\index\controller;
 use think\Db;
 use think\Controller;
+use think\Loader;
 class Com extends Controller
 {
     public function _initialize(){
@@ -15,7 +16,13 @@ class Com extends Controller
 						->limit(5)
 						->select();
 		$this->assign('newMessages',$newMessages);
-		$newArticles = Db::name('articles')->field('id,title,photo,time')->select();
+		$newArticles = Db::name('articles')
+						->alias('a')
+						->field('a.id,title,photo,a.time,count(c.id) as review')
+						->join('comments c','a.id=c.aid','LEFT')
+						->group('a.id') 
+						->select();
 		$this->assign('newArticles',$newArticles);
     }
+	
 }

@@ -21,6 +21,9 @@ Route::get('admin/quit','admin/Login/quit'); // 定义登录提交的路由规�
 Route::get('food$','Food/index');
 Route::get('food/:id','Food/food');
 
+//oauth route
+Route::get('Login/:type','Login/login');
+Route::get('oauth/:type','Login/callback');
 
 //food route
 Route::get('health$','Health/index');

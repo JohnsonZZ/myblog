@@ -17,9 +17,9 @@ return [
     // 数据库名
     'database'       => 'delicacy',
     // 用户名
-    'username'       => 'root',
+    'username'       => 'delicacy',
     // 密码
-    'password'       => 'zhang123',
+    'password'       => 'N3ZjaZ4N5RMMyHF2',
     // 端口
     'hostport'       => '',
     // 连接dsn

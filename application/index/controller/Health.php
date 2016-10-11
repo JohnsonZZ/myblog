@@ -9,7 +9,13 @@ class health extends Com
 	public function index()
     {
 		$articles = new Articles();
-		$article = $articles->field('id,photo,brief,title,time,pcount,like')->where('cid','2')->paginate(5);
+		$article = $articles
+					->alias('a')
+					->field('a.id,photo,brief,title,a.time,pcount,like,count(c.id) as review')
+					->where('cid','2')
+					->join('comments c','a.id=c.aid','LEFT')
+					->group('a.id') 
+					->paginate(5);
 		$this->assign('articles',$article);
 		return $this->fetch();
     }
