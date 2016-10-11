@@ -8,7 +8,6 @@ class index extends Com
     public function index()
     {
 		
-		echo cookie('id');exit;
 		$articles = new Articles();
 		$article = $articles
 					->alias('a')

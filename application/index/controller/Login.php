@@ -49,6 +49,8 @@ class Login extends Controller
 					Cookie::set('id',$user['id']);
 					Cookie::set('nick',$result['login']);
 					Cookie::set('avatar',$result['avatar_url']);
+					
+					echo Cookie::get('id');;exit;
 					$this->redirect('/');
                 } else {
                     exception("获取github用户信息失败：{$data['msg']}");
