@@ -210,7 +210,6 @@ abstract class ThinkOauth{
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST => false,
-			CURLOPT_HTTPHEADER     => $header
 		);
 
 		/* 根据请求类型设置特定参数 */
