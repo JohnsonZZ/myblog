@@ -33,8 +33,9 @@ class Login extends Controller
 					$Users =  new Users();
 					$user = $Users->field('id,nick,avatar,update_time')->where('openid',$result['id'])->find(); 
 					if($user){
+						
 						$user->avatar = $result['avatar_url'];
-						$Users->save();
+						$Users->save(['avatar'  => $result['avatar_url']],['id' => $user['id']);
 					}else{
 						$data['nick'] = $result['login'];
 						$data['type'] = $type;
