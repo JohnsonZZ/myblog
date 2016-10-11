@@ -40,7 +40,7 @@ class Login extends Controller
 						$data['type'] = $type;
 						$data['openid'] = $result['id'];
 						$data['avatar'] = $result['avatar_url'];
-						$user->data($data);
+						$Users->data($data);
 						$Users->save();
 					}
 					Cookie::init(['prefix'=>'d_','expire'=>604800]);
