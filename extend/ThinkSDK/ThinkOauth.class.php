@@ -236,7 +236,6 @@ abstract class ThinkOauth{
 		$error = curl_error($ch);
 		curl_close($ch);
 		if($error) exception('请求发生错误：' . $error);
-		dump($data);
 		return  $data;
 	}
 	
