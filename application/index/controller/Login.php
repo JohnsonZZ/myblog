@@ -30,7 +30,7 @@ class Login extends Controller
                 $github   = \ThinkOauth::getInstance('github', $token);
                 $result = $github->call('user');
                 if($result){
-					$Users =  new User();
+					$Users =  new Users();
 					$user = $Users->field('id,nick,avatar,update_time')->where('openid',$result['id'])->find(); 
 					if($user){
 						$user->avatar = $result['avatar_url'];
