@@ -21,7 +21,6 @@ class Login extends Controller
 		$extend = null;
         $token = $sns->getAccessToken($code , $extend);
 		
-				dump($token);exit;
         //获取当前登录用户信息
         if(is_array($token)){
             if($type=='github')
