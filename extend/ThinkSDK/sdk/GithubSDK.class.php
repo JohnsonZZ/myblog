@@ -41,7 +41,6 @@ class GithubSDK extends ThinkOauth{
 		/* Github 调用公共参数 */
 		$params = array();
 		$header = array("Authorization: bearer {$this->Token['access_token']}");
-		$param = $this->Token['access_token'];
 		$data = $this->http($this->url($api), $this->param($params, $param), $method, $header);
 		return json_decode($data, true);
 	}
@@ -72,7 +71,7 @@ class GithubSDK extends ThinkOauth{
 		if(!empty($data['id']))
 			return $data['id'];
 		else
-			exception('没有获取到 Github 用户ID！');
+			exception($data);
 	}
 	
 }
