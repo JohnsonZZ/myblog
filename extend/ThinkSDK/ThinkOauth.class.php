@@ -217,6 +217,7 @@ abstract class ThinkOauth{
 		switch(strtoupper($method)){
 			case 'GET':
 				$opts[CURLOPT_URL] = $url . '?' . http_build_query($params);
+				dump($opts[CURLOPT_URL]);
 				break;
 			case 'POST':
 				//判断是否传输文件
