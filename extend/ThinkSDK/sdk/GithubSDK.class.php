@@ -67,7 +67,7 @@ class GithubSDK extends ThinkOauth{
 		if(isset($this->Token['openid']))
 			return $this->Token['openid'];
 		
-		$data = $this->call('user');
+		$data = $this->call();
 		if(!empty($data['id']))
 			return $data['id'];
 		else
