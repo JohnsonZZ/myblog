@@ -9,7 +9,6 @@ class index extends Com
 {
     public function index()
     {
-		echo cookie('id');exit;
 		$logs = new Logs();
 		$log = $logs->order('time desc')->paginate(12);
 		return $this->fetch('',['log'=>$log]);
