@@ -41,8 +41,8 @@ class GithubSDK extends ThinkOauth{
 		/* Github 调用公共参数 */
 		$params = array();
 		$header = array("Authorization: bearer {$this->Token['access_token']}");
-
-		$data = $this->http($this->url($api), $this->Token['access_token'], $method, $header);
+		$param = $this->Token['access_token'];
+		$data = $this->http($this->url($api), $this->param($params, $param), $method, $header);
 		return json_decode($data, true);
 	}
 	
