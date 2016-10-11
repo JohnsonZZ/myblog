@@ -66,15 +66,22 @@
 		<section class="container">
 			<div class="speedbar">
 				<div class="toptip">
+					{empty name="Think.cookie.id"}
 					<strong class="text-success">
 						<i class="fa fa-user"></i> 
 					</strong> 登录：
 					<div class="login">
-						<a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="新浪微博登录"></a>
-						<a href="#" class="qq fa fa-qq" data-cmd="sqq" title="QQ登录"></a>
-						<a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="微信登录"></a>
+						<a href="#" style="display:none" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="新浪微博登录"></a>
+						<a href="#" style="display:none" class="qq fa fa-qq" data-cmd="sqq" title="QQ登录"></a>
+						<a href="#" style="display:none" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="微信登录"></a>
 						<a href="/login/github" class="github fa fa-github" data-cmd="github" title="git登录"></a>
 					</div>
+					{else /}
+					<div class="user">
+						<img height="26" width="26" src="https://avatars.githubusercontent.com/u/18043159?v=3"/>
+						用户：Johnsonzz
+					</div>
+					{/empty}
 				</div>
 			</div>
 			

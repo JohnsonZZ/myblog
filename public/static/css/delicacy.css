@@ -4,6 +4,8 @@
 .login .bds_more{background:#40a57d;}
 .login .bds_weixin{background:#7ad071;}
 .login a:hover{background-color:#7fb4ab;color: #fff!important;border-bottom:0;}
+.user{display:inline}
+.user img{float:left;border-bottom:0;margin-right:5px;width:26px;height:26px;line-height:26px;color: #fff!important;}
 .messages-count{padding:20px 0 15px 15px;background-color:#fff;}
 .recipe{width: 100%;float:left}
 .recipe ul{width:100%;display:block;float:left;border-bottom:1px solid #eaeaea;border-top:1px solid #eaeaea;}

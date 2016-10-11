@@ -2,6 +2,8 @@
 namespace app\index\controller;
 use think\Controller;
 use think\Loader;
+use think\Cookie;
+use app\index\model\Users;
 class Login extends Controller
 {
 	public function login($type = null)
@@ -26,14 +28,26 @@ class Login extends Controller
             if($type=='github')
             {
                 $github   = \ThinkOauth::getInstance('github', $token);
-                $data = $github->call('user');
-                if($data){
-                    echo("<h1>恭喜！使用 {$type} 用户登录成功</h1><br>");
-                    echo("授权信息为：<br>");
-                    dump($token);
-                    echo("当前登录用户信息为：<br>");
-                    dump($data);
-                    //$this->calllogin('qq',$token['openid'],$data['nickname'],$data['figureurl_2']);
+                $result = $github->call('user');
+                if($result){
+					$Users =  new User();
+					$user = $Users->field('id,nick,avatar,update_time')->where('openid',$result['id'])->find(); 
+					if($user){
+						$user->avatar = $result['avatar_url'];
+						$Users->save();
+					}else{
+						$data['nick'] = $result['login'];
+						$data['type'] = $type;
+						$data['openid'] = $result['id'];
+						$data['avatar'] = $result['avatar_url'];
+						$user->data($data);
+						$Users->save();
+					}
+					Cookie::init(['prefix'=>'d_','expire'=>604800]);
+					Cookie::set('id',$user->id);
+					Cookie::set('nick',$result['login']);
+					Cookie::set('avatar',$result['avatar_url']);
+					$this->redirect('/');
                 } else {
                     exception("获取github用户信息失败：{$data['msg']}");
                 }
