@@ -67,11 +67,11 @@ class GithubSDK extends ThinkOauth{
 		if(isset($this->Token['openid']))
 			return $this->Token['openid'];
 		
-		$data = $this->call('');
+		$data = $this->call('user');
 		if(!empty($data['id']))
 			return $data['id'];
 		else
-			dump($data);exit;
+			dump($this->Token['access_token']);exit;
 			exception('没有获取到 Github 用户ID！');
 	}
 	
