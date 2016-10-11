@@ -19,6 +19,7 @@ class Login extends Controller
         Loader::import('ThinkSDK.ThinkOauth',EXTEND_PATH,'.class.php');
         $sns  = \ThinkOauth::getInstance($type);
 		$extend = null;
+		dump($code);exit;
         $token = $sns->getAccessToken($code , $extend);
 		
         //获取当前登录用户信息
