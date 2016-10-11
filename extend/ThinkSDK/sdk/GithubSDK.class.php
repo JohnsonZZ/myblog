@@ -53,8 +53,6 @@ class GithubSDK extends ThinkOauth{
 		parse_str($result, $data);
 		if($data['access_token'] && $data['token_type']){
 			$this->Token = $data;
-			
-			dump($this->Token['access_token']);exit;
 			$data['openid'] = $this->openid();
 			return $data;
 		} else
