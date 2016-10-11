@@ -71,7 +71,8 @@ class GithubSDK extends ThinkOauth{
 		if(!empty($data['id']))
 			return $data['id'];
 		else
-			exception($data);
+			dump($data);exit;
+			exception('没有获取到 Github 用户ID！');
 	}
 	
 }
