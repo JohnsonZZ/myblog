@@ -25,7 +25,7 @@ class Login extends Controller
             if($type=='github')
             {
                 $github   = \ThinkOauth::getInstance('github', $token);
-                $data = $github->call('user/get_user_info');
+                $data = $github->call('user');
 
                 if($data['ret'] == 0){
                     echo("<h1>恭喜！使用 {$type} 用户登录成功</h1><br>");
