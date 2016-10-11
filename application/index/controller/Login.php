@@ -35,7 +35,7 @@ class Login extends Controller
 					if($user){
 						
 						$user->avatar = $result['avatar_url'];
-						$Users->save(['avatar'  => $result['avatar_url']],['id' => $user['id']);
+						$Users->save(['avatar'  => $result['avatar_url']],['id' => $user['id']]);
 					}else{
 						$data['nick'] = $result['login'];
 						$data['type'] = $type;
