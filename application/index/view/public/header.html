@@ -76,10 +76,11 @@
 						<a href="#" style="display:none" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="微信登录"></a>
 						<a href="/login/github" class="github fa fa-github" data-cmd="github" title="git登录"></a>
 					</div>
-					{else /}
+					{else/}
 					<div class="user">
 						<img height="26" width="26" src="{$Think.cookie.d_avatar}"/>
 						用户：{$Think.cookie.d_nick}
+						<a href="javascript:;" id="loginout" class="login-out" title="退出">退出</a>
 					</div>
 					{/empty}
 				</div>

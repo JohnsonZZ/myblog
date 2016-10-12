@@ -56,4 +56,8 @@ class Login extends Controller
             }
         }
     }
+	public function loginout(){
+		Cookie::clear('d_');
+		return true;
+	}
 }

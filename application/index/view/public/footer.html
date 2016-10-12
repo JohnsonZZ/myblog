@@ -16,6 +16,15 @@
 				$('#search-expand').toggle();
 			}	
 		); 
+		$('#loginout').click(
+			function(){
+				$.get('/index/login/loginout','',function(data){
+					if(data){
+						location.reload();
+					}
+				})
+			}
+		);
 	</script>
 	</body>
 </html>
