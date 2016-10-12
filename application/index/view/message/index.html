@@ -45,7 +45,7 @@
 				<div class="comt">
 					<div class="comt-box">
 						<input type="hidden" name="pid" id="pid" value="0" />
-						<input type="hidden" name="fromuid" id="fromuid" value="1" />
+						<input type="hidden" name="fromuid" id="fromuid" value="{$Think.cookie.d_id?$Think.cookie.d_id : 1}" />
 						<input type="hidden" name="touid" id="touid" value="0" />
 						<input type="hidden" name="commentid" id="commentid" value="0" />
 						{:token()}
