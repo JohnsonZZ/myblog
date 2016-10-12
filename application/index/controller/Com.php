@@ -20,6 +20,8 @@ class Com extends Controller
 						->field('a.id,title,photo,a.time,count(c.id) as review')
 						->join('comments c','a.id=c.aid','LEFT')
 						->group('a.id') 
+						->limit(5)
+						->order('rand()')
 						->select();
 		$this->assign('newArticles',$newArticles);
     }
