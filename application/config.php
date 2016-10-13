@@ -17,7 +17,7 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -184,6 +184,7 @@ return [
         'prefix' => '',
         // 缓存有效期 0表示永久缓存
         'expire' => 0,
+		//redis 服务器端口
     ],
 
     // +----------------------------------------------------------------------
