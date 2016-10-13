@@ -2,9 +2,10 @@
 namespace app\admin\controller;
 use think\Controller;
 use think\Request;
+use think\Loader;
+use think\Cache;
 use app\admin\model\Admins;
 use app\admin\model\Logs;
-use think\Loader;
 class login extends Controller
 {
     public function index()
@@ -15,7 +16,6 @@ class login extends Controller
     }
 	public function check()
     {
-		$admins = new Admins();
 		$data = Request::instance()->param();
 		$validate = Loader::validate('Admins');
 
@@ -23,8 +23,18 @@ class login extends Controller
 			$this->error($validate->getError());
 		}
 		
-		
-		$admin = $admins->field('id,name,pwd,salt')->where('name',$data['name'])->find();
+		if(Cache::get('adminname') == $data['name']){
+			$admin=Cache::get('admin');
+		}else{
+			$admins = new Admins();
+			$admin = $admins->field('id,name,pwd,salt')->where('name',$data['name'])->find();
+			$adminname = $adminstrator['name'] = $admin['name'];
+			$adminstrator['id'] = $admin['id'];
+			$adminstrator['pwd'] = $admin['pwd'];
+			$adminstrator['salt'] = $admin['salt'];
+			Cache::set('adminname',$adminstrator,604800);
+			Cache::set('admin',$adminstrator,604800);				
+		}
 		if($admin){
 			if($admin['pwd'] == sha1($data['pwd'].$admin['salt'])){
 				if(isset($data['remember'])){
