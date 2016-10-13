@@ -12,9 +12,10 @@ class index extends Com
 					->alias('a')
 					->field('a.id,photo,cid,brief,title,a.time,pcount,like,count(c.id) as review')
 					->join('comments c','a.id=c.aid','LEFT')
-					->group('a.id')
-					->order('rand()')					
-					->paginate(8);
+					->group('a.id')//以文章ID为组，join评论
+					->order('rand()')
+					->limit(10)
+					->select();
 		$this->assign('articles',$article);
 		return $this->fetch();
     }

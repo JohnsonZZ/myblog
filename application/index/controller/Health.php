@@ -16,7 +16,7 @@ class health extends Com
 					->join('comments c','a.id=c.aid','LEFT')
 					->group('a.id')
 					->order('a.id desc') 
-					->paginate(8);
+					->select();
 		$this->assign('articles',$article);
 		return $this->fetch();
     }

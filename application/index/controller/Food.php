@@ -16,8 +16,8 @@ class food extends Com
 					->where('cid','1')
 					->join('comments c','a.id=c.aid','LEFT')
 					->group('a.id')
-					->order('a.id desc')					
-					->paginate(8);
+					->order('a.id desc')
+					->select();
 		$this->assign('articles',$article);
 		return $this->fetch();
     }
