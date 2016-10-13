@@ -44,30 +44,58 @@
 		<div class="banner banner-sticky"></div>
 		
 		{volist name="articles" id="val"}
-		<article class="excerpt">
-			
-			<header>
-				<a class="label label-important" href="/food">美食
-					<i class="label-arrow"></i>
-				</a>
-				<h2>
-					<a href="/food/{$val.id}" title="{$val.title}">{$val.title} </a>
-				</h2>
-			</header>
-			<div class="focus">
-				<a href="/food/{$val.id}">
-					<img class="thumb" width="200" height="123" src="/uploads/{$val.photo}" alt="{$val.title}">
-				</a>
-			</div>
-			<span class="note"> 
-				{$val.brief}
-			</span>
-			<p class="auth-span">
-				<span class="muted"><i class="fa fa-clock-o"></i> {$val.time|from_time}</span>	
-				<span class="muted"><i class="fa fa-eye"></i> {$val.pcount}</span>	
-				<span class="muted"><i class="fa fa-comments-o"></i> <a href="#">{$val.review}评论</a></span>
-			</p>
-		</article>
+			{eq name="$val.cid" value="1" }
+			<article class="excerpt">
+				
+				<header>
+					<a class="label label-important" href="/food">美食
+						<i class="label-arrow"></i>
+					</a>
+					<h2>
+						<a href="/food/{$val.id}" title="{$val.title}">{$val.title} </a>
+					</h2>
+				</header>
+				<div class="focus">
+					<a href="/food/{$val.id}">
+						<img class="thumb" width="200" height="123" src="/uploads/{$val.photo}" alt="{$val.title}">
+					</a>
+				</div>
+				<span class="note"> 
+					{$val.brief}
+				</span>
+				<p class="auth-span">
+					<span class="muted"><i class="fa fa-clock-o"></i> {$val.time|from_time}</span>	
+					<span class="muted"><i class="fa fa-eye"></i> {$val.pcount}</span>	
+					<span class="muted"><i class="fa fa-comments-o"></i> <a href="#">{$val.review}评论</a></span>
+				</p>
+			</article>
+			{else/}
+			<article class="excerpt">
+					
+					<header>
+						<a class="label label-success" href="/health">健康
+							<i class="label-arrow"></i>
+						</a>
+						<h2>
+							<a href="/health/{$val.id}" title="{$val.title}">{$val.title} </a>
+						</h2>
+					</header>
+					<div class="focus">
+						<a href="/health/{$val.id}">
+							<img class="thumb" width="200" height="123" src="/uploads/{$val.photo}" alt="{$val.title}">
+						</a>
+					</div>
+					<span class="note"> 
+						{$val.brief}
+					</span>
+					<p class="auth-span">
+						<span class="muted"><i class="fa fa-clock-o"></i> {$val.time|from_time}</span>	
+						<span class="muted"><i class="fa fa-eye"></i> {$val.pcount}</span>	
+						<span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="#comments">{$val.review}评论</a></span>
+						<span class="muted" style="display:none;"><a href="javascript:;" data-action="ding" data-id="3798" id="Addlike" class="action"><i class="fa fa-heart-o"></i><span class="count">35</span>喜欢</a></span>
+					</p>
+				</article>
+				{/eq}
 		{/volist}
 		<div class="pagination">
 			{$articles->render()}
