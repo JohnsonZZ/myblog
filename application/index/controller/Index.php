@@ -14,7 +14,7 @@ class index extends Com
 					->join('comments c','a.id=c.aid','LEFT')
 					->group('a.id')
 					->order('rand()')					
-					->select();
+					->paginate(8);
 		$this->assign('articles',$article);
 		return $this->fetch();
     }
