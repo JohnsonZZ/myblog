@@ -36,6 +36,7 @@ class message extends Controller
 		$this->assign('messages', $messages);
 		return $this->fetch();
     }
+	//·¢ÆÀÂÛ
     public function comment(Request $request)
 	{
 		$data = $request->param();

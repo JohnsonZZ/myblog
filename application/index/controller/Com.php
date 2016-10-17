@@ -5,6 +5,7 @@ use think\Controller;
 class Com extends Controller
 {
     public function _initialize(){
+		//²à±ßÀ¸ÐÅÏ¢
 		$dbmessages = Db::name('messages');
 		$newMessages = $dbmessages
 						->where('pid',0)
@@ -15,6 +16,7 @@ class Com extends Controller
 						->limit(5)
 						->select();
 		$this->assign('newMessages',$newMessages);
+		//²à±ßÀ¸ÎÄÕÂ
 		$newArticles = Db::name('articles')
 						->alias('a')
 						->field('a.id,title,photo,a.time,count(c.id) as review')

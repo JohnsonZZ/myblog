@@ -149,11 +149,23 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
-
+	//验证码
+	'captcha'  => [
+        // 验证码字符集合
+        'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY', 
+        // 验证码字体大小(px)
+        'fontSize' => 28, 
+        // 是否画混淆曲线
+        'useCurve' => true, 
+        // 验证码位数
+        'length'   => 4, 
+        // 验证成功后是否重置        
+        'reset'    => true
+	],
     // +----------------------------------------------------------------------
     // | 日志设置
     // +----------------------------------------------------------------------
-
+	
     'log'                    => [
         // 日志记录方式，内置 file socket 支持扩展
         'type'  => 'File',

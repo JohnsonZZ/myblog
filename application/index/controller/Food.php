@@ -35,7 +35,7 @@ class food extends Com
 			$articles->where('id',$id)->setInc('pcount');
 			cookie("article$id","active");
 		}
-		$tree = array();
+		$tree = array();//评论盖楼
 		$Comments = new Comments();
 		$count = $Comments ->where('pid',0) ->where('aid',$id) ->count();
 		$comments = $Comments
@@ -73,6 +73,7 @@ class food extends Com
 		$this->assign('articleList', $articleList);
 		return $this->fetch();
     }
+	//预览
 	public function preview()
 	{
 		$tree = array();
@@ -102,9 +103,10 @@ class food extends Com
 		$this->assign('count', $count);
 		return $this->fetch();
 	}
+	//ajax获取异步加载消息
 	public function getlist($id,$page){
 		$tree = array();
-		$start = $page*10;
+		$start = $page*10;//当前加载次数
 		$Comments = new Comments();
 		$count = $Comments ->where('pid',0) ->where('aid',$id) ->count()-1;
 		$comments = $Comments
@@ -129,6 +131,7 @@ class food extends Com
 		}
 		return $tree;
 	}
+	//发表评论
 	public function comment(Request $request)
 	{
 		$data = $request->param();
@@ -142,7 +145,6 @@ class food extends Com
 						->join('users b','a.fromuid = b.id','LEFT')
 						->field('a.id,message,fromuid,pid,a.time,b.nick as send,b.avatar as asend')
 						->find();
-			
 		}else{
 			$comment = $Comments
 						->where('a.id',$id)

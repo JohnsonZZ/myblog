@@ -6,6 +6,7 @@ use think\Cookie;
 use app\index\model\Users;
 class Login extends Controller
 {
+	//第三方登录 oauth2.0
 	public function login($type = null)
     {
 		Loader::import('ThinkSDK.ThinkOauth',EXTEND_PATH,'.class.php');
@@ -32,8 +33,9 @@ class Login extends Controller
                 if($result){
 					$Users =  new Users();
 					$user = $Users->field('id,nick,avatar,update_time')->where('openid',$result['id'])->find(); 
+					//判断以前是否登录
 					if($user){
-						
+						//存头像。
 						$user->avatar = $result['avatar_url'];
 						$Users->save(['avatar'  => $result['avatar_url']],['id' => $user['id']]);
 					}else{
