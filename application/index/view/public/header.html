@@ -52,9 +52,9 @@
 						</li>
 						<div class="search-expand" id="search-expand">
 							<div class="search-expand-inner">
-								<form method="get" class="searchform themeform" onsubmit="location.href='http://yusi123.com/search/' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="http://yusi123.com/">
+								<form class="searchform themeform">
 									<div> 
-										<input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='search...';" onfocus="if(this.value=='search...')this.value='';" value="search..." autofocus="autofocus"/>
+										<input type="text" id="bdcsMain" class="search"/>
 									</div>
 								</form>
 							</div>
