@@ -350,6 +350,7 @@
 							+'<span class="c-author"><a href="#" rel="external nofollow" class="url" target="_blank">'+data['send']+'</a></span>'+data['time']
 							+'<a rel="nofollow" class="comment-reply-link" href="javascript:;" onclick="return addRespond('+data['id']+','+data['id']+','+data['fromuid']+')" aria-label="回复给'+data['send']+'">回复</a>'
 							+'</div></div></div></li>';
+					$('#review').val('');
 					$('#commentlist').prepend(html);
 				}else{
 					html += '<li class="comment" id="comment-'+data['id']+'">'
