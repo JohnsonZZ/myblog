@@ -302,7 +302,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 
 .yusi-logo {display: block;text-align: center;}
 .yusi-logo h1 {font-weight:100;text-shadow: 0px 0px 1px rgba(94, 255, 216, 0.8);display: inline-block; padding:30px 0px 20px 0px;cursor: pointer;position: relative;color: #fff;}
-.yusi-mono {font-family: jin_mei_mxplzx5cc0b0343165a3;letter-spacing: -2px;font-size: 54px;margin: 0;padding: 0; z-index: 0;  -webkit-transition: all 0.1s ease-out;-moz-transition: all 0.1s ease-out;-o-transition: all 0.1s ease-out;-ms-transition: all 0.1s ease-out; transition: all 0.1s ease-out;}
+.yusi-mono {font-family: jin_mei_mxplzx6de2d9eeb165a3;letter-spacing: -2px;font-size: 54px;margin: 0;padding: 0; z-index: 0;  -webkit-transition: all 0.1s ease-out;-moz-transition: all 0.1s ease-out;-o-transition: all 0.1s ease-out;-ms-transition: all 0.1s ease-out; transition: all 0.1s ease-out;}
 .yusi-bloger {font-family: minijianxixingk5ccf4c250165a3;font-size: 24px;margin-left: -6px;letter-spacing: -2px;padding: 0; z-index: 2;-webkit-transition: all 0.5s ease-out;-moz-transition: all 0.5s ease-out; -o-transition: all 0.5s ease-out;-ms-transition: all 0.5s ease-out; transition: all 0.5s ease-out;}
 .yusi-logo h1:hover .yusi-mono {letter-spacing: 5px;}
 .yusi-logo h1:hover .yusi-bloger { left: 26px; opacity: 0.2;}
